@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<title>Slider Challenge</title>
+
+<style>
+  body {
+    font-family: Arial;
+    text-align: center;
+    margin-top: 100px;
+  }
+
+  input[type=range] {
+    width: 300px;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+
+  #win {
+    display: none;
+    color: green;
+    font-size: 24px;
+    margin-top: 20px;
+  }
+</style>
+</head>
+
+<body>
+
+<h1>🎯 Nastav hodnotu na 2</h1>
+<p>(Slider má rozsah -1 až 1 😏)</p>
+
+<input type="range" min="-1" max="1" step="0.1" value="0" id="slider">
+
+<p>Hodnota: <span id="val">0</span></p>
+
+<button id="btn" disabled>Klikni</button>
+
+<p id="win">🎉 You win!</p>
+
+<script>
+const slider = document.getElementById("slider");
+const val = document.getElementById("val");
+const btn = document.getElementById("btn");
+const win = document.getElementById("win");
+
+// změna slideru
+slider.addEventListener("input", () => {
+  val.textContent = slider.value;
+
+  // tlačítko se aktivuje jen při hodnotě 2
+  if (Number(slider.value) === 2) {
+    btn.disabled = false;
+  } else {
+    btn.disabled = true;
+  }
+});
+
+// kliknutí na tlačítko
+btn.addEventListener("click", () => {
+  if (Number(slider.value) === 2) {
+    win.style.display = "block";
+  }
+});
+</script>
+
+</body>
+</html>
